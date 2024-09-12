@@ -1,0 +1,31 @@
+services:
+  nginx_r:
+    image: nginx:latest
+    container_name: nginx_r
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx_r.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx_right.conf:/etc/nginx/nginx.conf
+    networks:
+      - backend
+
+  nginx_a:
+    image: nginx:latest
+    container_name: nginx_a
+    volumes:
+      - ./nginx_a.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - backend
+
+  nginx_b:
+    image: nginx:latest
+    container_name: nginx_b
+    volumes:
+      - ./nginx_b.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - backend
+
+networks:
+  backend:
+
